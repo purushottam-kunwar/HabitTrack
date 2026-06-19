@@ -41,6 +41,9 @@ const page = usePage();
                                 <NavLink :href="route('report')" :active="route().current('report')">
                                     Weekly Report
                                 </NavLink>
+                                <NavLink :href="route('leaderboard')" :active="route().current('leaderboard')">
+                                    Leaderboard
+                                </NavLink>
                             </div>
                         </div>
 
@@ -109,6 +112,7 @@ const page = usePage();
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">Dashboard</ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('log')" :active="route().current('log')">Log Food</ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('report')" :active="route().current('report')">Weekly Report</ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('leaderboard')" :active="route().current('leaderboard')">Leaderboard</ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('notifications')" :active="route().current('notifications')">
                             Notifications
                             <span v-if="page.props.unreadNotifications > 0" class="ml-2 inline-flex items-center justify-center h-5 w-5 rounded-full bg-red-500 text-white text-xs font-bold">

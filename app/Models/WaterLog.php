@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class HabitLog extends Model
+class WaterLog extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'food_item_id', 'log_date', 'quantity', 'amount_spent', 'notes'];
+
+    protected $fillable = [
+        'user_id',
+        'log_date',
+        'amount_ml',
+        'glass_count',
+    ];
 
     protected $casts = [
         'log_date' => 'date',
-        'amount_spent' => 'decimal:2',
     ];
 
     public function user(): BelongsTo
@@ -21,8 +26,8 @@ class HabitLog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function foodItem(): BelongsTo
+    public static function dailyTarget()
     {
-        return $this->belongsTo(FoodItem::class);
+        return 2000;
     }
 }

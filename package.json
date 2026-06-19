@@ -20,6 +20,8 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "axios": "^1.18.0"
+        "apexcharts": "^5.15.0",
+        "axios": "^1.18.0",
+        "vue3-apexcharts": "^1.11.1"
     }
 }
