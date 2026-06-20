@@ -12,15 +12,14 @@ class FoodItemController extends Controller
     {
         $search = trim($request->get('search', ''));
 
-        if (strlen($search) < 2) {
-            return response()->json([]);
+        $query = FoodItem::orderBy('name');
+
+        if (strlen($search) >= 2) {
+            $query->where('name', 'like', '%' . $search . '%')
+                  ->orderByRaw("CASE WHEN name LIKE ? THEN 0 ELSE 1 END", [$search . '%']);
         }
 
-        $items = FoodItem::where('name', 'like', '%' . $search . '%')
-            ->orderByRaw("CASE WHEN name LIKE ? THEN 0 ELSE 1 END", [$search . '%'])
-            ->orderBy('name')
-            ->limit(20)
-            ->get(['id', 'name', 'calories', 'unit']);
+        $items = $query->select(['id', 'name', 'category', 'type', 'calories', 'unit'])->limit(50)->get();
 
         return response()->json($items);
     }
